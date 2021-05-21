@@ -262,10 +262,14 @@ input[type=text]:placeholder {
     outline: none;
 } 
 
-#icon {
-  width:60%;
+#logRegPage {
+  width:30%;
 }
 
 * {
   box-sizing: border-box;
+}
+
+#email{
+  display: none;
 }
