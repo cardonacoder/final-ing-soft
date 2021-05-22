@@ -14,7 +14,7 @@
           <!-- Tabs Titles -->
           <h2 class="active" id="ing"> ingresar </h2>
           <h2 class="inactive underlineHover" id="reg"> Registrarse </h2>
-      
+
           <!-- Icon -->
           <div class="fadeIn first">
             <img src="./media/1.LogLandigPage.png" id="logRegPage" alt="User Icon" />
@@ -22,10 +22,17 @@
       
           <!-- Login Form -->
           <form>
-            <input type="text" id="username" class="fadeIn second" placeholder="usuario">
-            <input type="text" id="password" class="fadeIn third" placeholder="contraseña">
-            <input type="text" name="email" id="email" placeholder="correo eletrónico">
-            <input type="submit" class="fadeIn fourth" value="Ingresar" id="button">
+            <input type="text" id="fullname" placeholder="Nombre completo">
+            <input type="email" name="email" id="email" placeholder="Correo electrónico" required>
+            <input type="password" id="password" placeholder="Contraseña" required> 
+            <input type="password" id="confirmPassword" placeholder="Confirmar contraseña">
+            <div id="radioButtons">
+              <input type="radio" id="teacher" name="role" value="Profesor" required>
+              <label for="teacher">Profesor</label>
+              <input type="radio" id="student" name="role" value="Estudiante" required>
+              <label for="student">Estudiante</label>
+            </div>
+            <input type="submit" fourth" value="Ingresar" id="button">
           </form>
       
           <!-- Remind Passowrd -->
