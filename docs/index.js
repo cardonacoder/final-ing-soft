@@ -65,17 +65,12 @@ document.querySelector('form').addEventListener('submit', function(e) {
 
         if(userData.role === "teacher"){
             let tempTea = localData.users.teachers.find( ({ email }) => email === elem.email.value );
-            console.log("tempTea",tempTea);
-            console.log("userData",userData);
 
             if(tempTea===undefined){
                 alert("Profesor no registrado");
             }else{
 
-                console.log("tempTea",tempTea);
                 if(tempTea.password !== elem.password.value){
-
-                    console.log("tempTea.password",userData,"elem.password.value",elem.password.value);
                     alert("Contraseña inválida");
                 }else{
                     localData.activeUser = tempTea;
@@ -118,28 +113,132 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 role: elem.teacher.checked ? "teacher" : "student"
             };
 
-            let localData = { 
+            let localData;
 
-                activeUser: null,
-                users: { 
-                    students:[],
-                    teachers:[],
-                    usersQty: 0,
-                    email_List: []
-                },
-            };
+            /* 
+            
+            if(localStorage.getItem("cnxData")){
+                if(JSON.parse(localStorage.getItem("cnxData")).users.email_List.indexOf(elem.email.value)!==-1)
+            */
 
-            if(localData.users.email_List.indexOf(elem.email.value)!==-1){
-                alert("El correo electrónico ingresado ya está registrado");
+            if(localStorage.getItem("cnxData")){
+                if(JSON.parse(localStorage.getItem("cnxData")).users.email_List.indexOf(elem.email.value)!==-1){
+                    alert("El correo electrónico ingresado ya está registrado");
+                }else{
+                    if(userData.role === "teacher"){
+
+                        if(localStorage.getItem("cnxData")){
+
+                            localData = JSON.parse(localStorage.getItem("cnxData"));
+                            localData.users.teachers.push(userData);
+                            localData.users.usersQty+=1;
+                            localData.users.email_List.push(userData.email);
+                        }else{
+
+                            localData  = { 
+
+                                activeUser: null,
+                                users: { 
+                                    students:[],
+                                    teachers:[],
+                                    usersQty: 0,
+                                    email_List: []
+                                },
+                            };
+
+                            localData.users.teachers.push(userData);
+                            localData.users.usersQty+=1;
+                            localData.users.email_List.push(userData.email);
+                            
+                        }
+
+                    }else{
+                        if(localStorage.getItem("cnxData")){
+
+                            localData = JSON.parse(localStorage.getItem("cnxData"));
+                            localData.users.students.push(userData);
+                            localData.users.usersQty+=1;
+                            localData.users.email_List.push(userData.email);
+                        }else{
+
+                            localData  = { 
+
+                                activeUser: null,
+                                users: { 
+                                    students:[],
+                                    teachers:[],
+                                    usersQty: 0,
+                                    email_List: []
+                                },
+                            };
+
+                            localData.users.students.push(userData);
+                            localData.users.usersQty+=1;
+                            localData.users.email_List.push(userData.email);
+                            
+                        }
+                    }
+        
+                    localStorage.setItem("cnxData",JSON.stringify(localData));
+            
+                    alert("Registro exitoso");
+            
+                    clearForm(elem);
+                    ingFX();
+                }
             }else{
                 if(userData.role === "teacher"){
-                    localData.users.teachers.push(userData);
-                    localData.users.usersQty+=1;
-                    localData.users.email_List.push(userData.email);
+
+                    if(localStorage.getItem("cnxData")){
+
+                        localData = JSON.parse(localStorage.getItem("cnxData"));
+                        localData.users.teachers.push(userData);
+                        localData.users.usersQty+=1;
+                        localData.users.email_List.push(userData.email);
+                    }else{
+
+                        localData  = { 
+
+                            activeUser: null,
+                            users: { 
+                                students:[],
+                                teachers:[],
+                                usersQty: 0,
+                                email_List: []
+                            },
+                        };
+
+                        localData.users.teachers.push(userData);
+                        localData.users.usersQty+=1;
+                        localData.users.email_List.push(userData.email);
+                        
+                    }
+
                 }else{
-                    localData.users.students.push(userData);
-                    localData.users.usersQty+=1;
-                    localData.users.email_List.push(userData.email);
+                    if(localStorage.getItem("cnxData")){
+
+                        localData = JSON.parse(localStorage.getItem("cnxData"));
+                        localData.users.students.push(userData);
+                        localData.users.usersQty+=1;
+                        localData.users.email_List.push(userData.email);
+                    }else{
+
+                        localData  = { 
+
+                            activeUser: null,
+                            users: { 
+                                students:[],
+                                teachers:[],
+                                usersQty: 0,
+                                email_List: []
+                            },
+                        };
+
+                        localData.users.students.push(userData);
+                        localData.users.usersQty+=1;
+                        localData.users.email_List.push(userData.email);
+                        
+                    }
                 }
     
                 localStorage.setItem("cnxData",JSON.stringify(localData));
@@ -149,6 +248,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 clearForm(elem);
                 ingFX();
             }
+
         }
     }
 });
