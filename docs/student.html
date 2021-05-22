@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="student.css">
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </style>
@@ -53,7 +54,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 id="role" class="w3-center">role</h4>
+         <h4 id="role" class="w3-center">Perfil</h4>
          <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
          <p id="fullname"><i class="fa fa-address-card fa-fw w3-margin-right w3-text-theme"></i>fullname</p>
@@ -93,27 +94,21 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
-              <h4>Entrega 1</h4>
-              <h6>Resumen</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <h4>Proyecto</h4>
+              <hr>
+              <div id="preview-container">
+                <button id="upload-dialog">Seleccione un archivo <i class="fa fa-file-pdf-o"></i></button>
+                <input type="file" id="pdf-file" name="pdf" accept="application/pdf" />
+                <div id="pdf-loader">Loading Preview ..</div>
+                <canvas id="pdf-preview" width="150"></canvas>
+                <span id="pdf-name"></span>
+                <button id="upload-button">Upload</button>
+                <button id="cancel-pdf">Cancel</button>
+              </div>
 
               <!-- <hr class="w3-clear"> -->
             </div>
           </div>
-
-          <br>
-
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <h4>Entrega 2</h4>
-              <h6>Resumen</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-              <!-- <hr class="w3-clear"> -->
-            
-            </div>
-          </div>
-
 
         </div>
       </div>
@@ -151,6 +146,9 @@ function openNav() {
 </script>
 
 <script src="student.js"></script>
+<script src="pdf.js/pdf.js"></script>
+<script src="pdf.js/pdf.worker.js"></script>
+<script src="studentScriptpdf.js"></script>
 
 </body>
 </html> 

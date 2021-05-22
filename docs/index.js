@@ -6,19 +6,6 @@ let fullNameBox = document.getElementById("fullname");
 let confirmPasswordBox = document.getElementById("confirmPassword");
 let logRegPage = document.getElementById("logRegPage");
 
-var dataBase = { 
-
-    activeUser: null,
-    users: { 
-        students:[],
-        teachers:[],
-        usersQty: 0,
-        email_List: []
-    },
-};
-
-localStorage.setItem("cnxData",JSON.stringify(dataBase));
-
 function regFX(){ 
 
     reg.classList.add("active"); 
@@ -93,7 +80,8 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 }else{
                     localData.activeUser = tempTea;
                     localStorage.setItem("cnxData",JSON.stringify(localData));
-                    window.location.replace("teacher.html");
+                    clearForm(elem);
+                    window.location.href = "teacher.html";
                 }
             }
 
@@ -108,7 +96,8 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 }else{
                     localData.activeUser = tempEst;
                     localStorage.setItem("cnxData",JSON.stringify(localData));
-                    window.location.replace("student.html");
+                    clearForm(elem);
+                    window.location.href = "student.html";
                 }
             }
         }
@@ -129,7 +118,16 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 role: elem.teacher.checked ? "teacher" : "student"
             };
 
-            let localData = JSON.parse(localStorage.getItem("cnxData"));
+            let localData = { 
+
+                activeUser: null,
+                users: { 
+                    students:[],
+                    teachers:[],
+                    usersQty: 0,
+                    email_List: []
+                },
+            };
 
             if(localData.users.email_List.indexOf(elem.email.value)!==-1){
                 alert("El correo electrónico ingresado ya está registrado");
